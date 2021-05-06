@@ -7,25 +7,42 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long productId;
 
-    @NotNull(message = "Product name is required.")
-    @Basic(optional = false)
-    private String name;
+    @Column
+    private String productName;
 
-    private Double price;
+    @Column
+    private int productPrice;
 
-    private String pictureUrl;
+    @Column
+    private int productUnit;
+
+    private String productDescription;
+    private String image;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "category_id")
+    private Category category = new Category();
+
+    @ManyToMany(mappedBy = "productList",fetch = FetchType.EAGER)
+    private List<User> userList;
+
+    public Product() {
+        this.productName = "";
+        this.productDescription = "";
+    }
+
 
 }
