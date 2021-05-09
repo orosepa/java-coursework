@@ -11,7 +11,6 @@ import java.util.List;
 @Table(name = "user")
 @Setter
 @Getter
-@NoArgsConstructor
 @ToString
 public class User {
     @Id
@@ -49,6 +48,8 @@ public class User {
         this.active = 1;
         this.role = role;
     }
+
+    public User() {}
 
     public List<String> getRoleList() {
         if (this.role.length() > 0) {
