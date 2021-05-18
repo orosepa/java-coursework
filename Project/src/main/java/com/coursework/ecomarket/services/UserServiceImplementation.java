@@ -4,6 +4,7 @@ import com.coursework.ecomarket.models.Product;
 import com.coursework.ecomarket.models.User;
 import com.coursework.ecomarket.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,5 @@ public class UserServiceImplementation implements UserService{
     public void deleteUser(long userId) {
         userRepository.deleteById(userId);
     }
-
 }
 
