@@ -28,10 +28,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/index.html","/signup.html","/login.html","/resources/**").permitAll()
+                .antMatchers("/test.html","/signup.html","/login.html","/resources/**").permitAll()
                 .antMatchers("/profile/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/manager/**").hasAnyRole("MANAGER","ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -43,7 +42,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .logoutSuccessUrl("/login")
                 .and()
                 .rememberMe().tokenValiditySeconds(30000).key("WhatEver!")
-                .rememberMeParameter("checkRememberMe");
+                .rememberMeParameter("checkRememberMe")
+                .and()
+                .csrf().disable();
     }
 
     @Bean
