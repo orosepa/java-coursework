@@ -8,11 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Setter
 @Getter
 @ToString
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userId;
@@ -56,7 +57,7 @@ public class User {
             return Arrays.asList(this.role.split(","));
         }
 
-        return new ArrayList<String>();
+        return new ArrayList<>();
     }
 
 
