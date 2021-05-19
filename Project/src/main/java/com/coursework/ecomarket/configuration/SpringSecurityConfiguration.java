@@ -42,9 +42,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .logoutSuccessUrl("/login")
                 .and()
                 .rememberMe().tokenValiditySeconds(30000).key("WhatEver!")
-                .rememberMeParameter("checkRememberMe")
-                .and()
-                .csrf().disable();
+                .rememberMeParameter("checkRememberMe");
     }
 
     @Bean
