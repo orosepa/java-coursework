@@ -67,4 +67,9 @@ public class HomePageController {
         mv.addObject("categoryList", categoryService.listCategory());
         return mv;
     }
+
+    @GetMapping("error")
+    public String error() {
+        return "error";
+    }
 }

@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="blocks.html :: headerfiles">
+    <title>Log in</title>
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+    <div class="jumbotron alert-danger">
+        <h1>Что-то пошло не так</h1>
+        <h3 th:text="${status}"></h3>
+        <h3 th:text="${error}"></h3>
+    </div>
+</div>
+</body>
+</html>
