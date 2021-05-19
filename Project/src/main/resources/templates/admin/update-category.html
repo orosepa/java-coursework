@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="blocks.html :: headerfiles">
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+    <div
+            style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
+        <div class="card">
+            <div class="card-block" style="padding: 24px;">
+                <form th:action="@{/admin/add-category}" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <input type="hidden" th:value="${Category.categoryId}" name="categoryId">
+                            <label for="categoryName">Наименование категории</label> <input
+                                type="text" class="form-control" id="categoryName"
+                                name="categoryName" th:value="${Category.categoryName}">
+                        </div>
+
+                        <div class="form-actions" style="margin-top: 12px;">
+                            <button type="submit" class="btn btn-success">Добавить</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

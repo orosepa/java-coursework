@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="blocks.html :: headerfiles">
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+    <h1 class="display-4 my-3">Корзина</h1>
+    <div class="row">
+        <ul class="list-group col-9">
+            <li class="list-group-item d-flex justify-content-around">
+                <span class="my-auto h6">Изображение</span>
+                <span class="my-auto h6">Продукт</span>
+                <span class="my-auto h6">Цена</span>
+            </li>
+        </ul>
+        <ul class="list-group col-9" th:each="product : ${user.productList}">
+            <li class="list-group-item d-flex justify-content-around">
+                <img th:src="${product.image}" height="100">
+                <span class="my-auto" th:text="${product.productName}"></span>
+                <span class="my-auto" th:text="'$ '+${product.productPrice}"></span>
+            </li>
+        </ul>
+        <ul class="list-group col-9">
+            <li class="list-group-item d-flex justify-content-end">
+                <span class="h6" th:text="'Сумма : '+${total}"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-end">
+                <a href="#" type="button" class="btn btn-primary">Оплатить</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

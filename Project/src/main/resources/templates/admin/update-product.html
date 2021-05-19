@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="blocks.html :: headerfiles">
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+    <div
+            style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
+        <div class="card">
+            <div class="card-block" style="padding: 24px;">
+                <form th:action="@{/admin/add-product}" method="post"
+                      enctype="multipart/form-data">
+                    <fieldset>
+                        <input type="hidden" name="productId" th:value="${product.productId}">
+                        <div class="form-group">
+                            <select class="custom-select" name="category">
+                                <option selected>Выбрать категорию</option>
+                                <option th:each="category : ${categoryList}"
+                                        th:value="${category.categoryId}"
+                                        th:text="${category.categoryName}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productName">Наименование продукта</label> <input type="text"
+                                                                                 class="form-control" id="productName" name="productName"
+                                                                                 th:value="${product.productName}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productDescription">Описание</label> <input
+                                type="text" class="form-control" id="productDescription"
+                                name="productDescription" th:value="${product.productDescription}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Цена</label> <input
+                                type="number" class="form-control" id="productPrice"
+                                name="productPrice" th:value="${product.productPrice}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productUnit">Количество</label> <input
+                                type="number" class="form-control" id="productUnit"
+                                name="productUnit" th:value="${product.productUnit}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file">Изображение</label> <input type="file"
+                                                                           class="form-control" id="file" name="file">
+                        </div>
+                        <div class="form-actions" style="margin-top: 12px;">
+                            <button type="submit" class="btn btn-success">Добавить</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

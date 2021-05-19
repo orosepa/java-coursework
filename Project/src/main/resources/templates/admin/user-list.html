@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="blocks.html :: headerfiles">
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+    <div class="row my-5">
+        <div class="list-group list-group-flush col-5">
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/category-form}">Управление категориями</a>
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/product-form}">Управление продуктами</a>
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/add-user}">Добавить администратора</a>
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/user-list}">Список пользователей и персонала</a>
+        </div>
+
+        <table class="table my-5">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Роль</th>
+                <th scope="col">Действие</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${userList}">
+                <th scope="row" th:text="${user.userId}"></th>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td>
+                    <a href="#" th:href="@{'/admin/delete-User/'+ ${user.userId}}"
+                       class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

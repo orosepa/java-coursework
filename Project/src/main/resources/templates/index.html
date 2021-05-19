@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="blocks.html :: headerfiles">
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+    <h1 class="display-5">Продукция</h1>
+
+    <div class="d-flex justify-content-start p-2">
+        <a class="list-group-item mr-2" href="#" th:href="@{/all}">Смотреть все</a>
+        <a class="list-group-item mr-2"	th:each="categories : ${categoryList}"
+           th:text="${categories.categoryName}" href="#" th:href="@{'/products/' + ${categories.categoryId}}"></a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4" th:each="product : ${productList}" style="width: 30%; height: 1.5vh">
+            <div class="card mt-4">
+                <img th:src="${product.image}" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h5 th:text="${product.productName}" class="card-title"></h5>
+                    <p th:text="${product.productDescription}" class="card-text"></p>
+                    <p th:text="'$ '+${product.productPrice}" class="card-text"></p>
+                    <a href="#" th:href="@{'~/account/add/' + ${product.productId}}" class="btn btn-primary">Добавить в корзину</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

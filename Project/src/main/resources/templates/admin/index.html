@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="blocks.html :: headerfiles">
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+    <h1 class="display-4 my-2" th:text ="'Добро пожаловать, ' + ${#authentication.getPrincipal().getFirstName()}"></h1>
+    <hr>
+    <div class="row">
+        <div class="list-group list-group-flush col-5">
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/category-form}">Управление категориями</a>
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/product-form}">Управление продуктами</a>
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/add-user}">Добавить администратора</a>
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/user-list}">Список пользователей и персонала</a>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

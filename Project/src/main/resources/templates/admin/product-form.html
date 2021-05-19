@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="blocks.html :: headerfiles">
+</head>
+<body>
+<header th:insert="blocks.html :: nav"></header>
+<div class="container">
+
+    <div class="row my-5">
+        <div class="list-group list-group-flush col-5">
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/category-form}">Управление категориями</a>
+            <a class="list-group-item list-group-item-action"
+               href="#" th:href="@{/admin/product-form}">Управление продуктами</a>
+        </div>
+    </div>
+
+    <table class="table my-5">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Изображение</th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${productList}">
+            <th scope="row" th:text="${product.productId}"></th>
+            <td><img th:src="${product.image}" width="300px"></td>
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.productDescription}"></td>
+            <td th:text="${product.productPrice}"></td>
+            <td th:text="${product.productUnit}"></td>
+            <td>
+                <a href="#"
+                   th:href="@{'/admin/update-product/'+ ${product.productId}}"
+                   class="btn btn-danger">Обновить</a>
+                <a href="#"
+                   th:href="@{'/admin/delete-product/'+ ${product.productId}}"
+                   class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div
+            style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
+        <div class="card">
+            <div class="card-block" style="padding: 24px;">
+                <form th:action="@{/admin/add-product}" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="form-group">
+                            <select class="custom-select" name="category">
+                                <option selected>Select Category</option>
+                                <option th:each="category : ${categoryList}"
+                                        th:value="${category.categoryId}"
+                                        th:text="${category.categoryName}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productName">Наименование</label> <input type="text"
+                                                                                 class="form-control" id="productName" name="productName"
+                                                                                 placeholder="Product Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productDescription">Описание</label> <input type="text"
+                                                                                               class="form-control" id="productDescription" name="productDescription"
+                                                                                               placeholder="Product Description">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Цена</label> <input type="number"
+                                                                                   class="form-control" id="productPrice" name="productPrice"
+                                                                                   placeholder="Product Price">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productUnit">Количество</label> <input type="number"
+                                                                                 class="form-control" id="productUnit" name="productUnit"
+                                                                                 placeholder="Product Unit">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file">Изображение</label> <input type="file"
+                                                                           class="form-control" id="file" name="file">
+                        </div>
+                        <div class="form-actions" style="margin-top: 12px;">
+                            <button type="submit" class="btn btn-success">Добавить</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
