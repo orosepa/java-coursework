@@ -1,20 +1,18 @@
 package com.coursework.ecomarket.controllers;
 
 import com.coursework.ecomarket.models.Category;
+import com.coursework.ecomarket.models.User;
 import com.coursework.ecomarket.services.CategoryService;
 import com.coursework.ecomarket.services.ProductService;
 import com.coursework.ecomarket.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping(value = "/")
 public class HomePageController {
 
     @Autowired
@@ -43,6 +41,16 @@ public class HomePageController {
     public String signup() {
         return "signup";
     }
+
+    @PostMapping("signup")
+    public ModelAndView signup(User user) {
+        ModelAndView mv = new ModelAndView("/index");
+        userService.save(user);
+        mv.addObject("productList", productService.listProduct());
+        mv.addObject("categoryList", categoryService.listCategory());
+        return mv;
+    }
+
 
     @GetMapping("all")
     public String allProducts(Model model) {

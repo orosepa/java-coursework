@@ -80,7 +80,7 @@ public class AdminController {
         return mv;
     }
 
-    @GetMapping("updateCategory/{categoryId}")
+    @GetMapping("update-category/{categoryId}")
     public ModelAndView updateCategory(@PathVariable("categoryId")String categoryId) {
         ModelAndView mv = new ModelAndView("admin/update-category");
         mv.addObject("Category", categoryService.getCategory(Long.parseLong(categoryId)).get());
@@ -122,7 +122,7 @@ public class AdminController {
     public ModelAndView updateProduct(@PathVariable("productId")String productId) {
         ModelAndView mv = new ModelAndView("admin/update-product");
         mv.addObject("categoryList", categoryService.listCategory());
-        mv.addObject("Product", productService.getProductById(Long.parseLong(productId)).get());
+        mv.addObject("product", productService.getProductById(Long.parseLong(productId)).get());
         return mv;
     }
 
